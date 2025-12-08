@@ -1,0 +1,11 @@
+# receives wanted execution - one unit or full architecture
+# receives wanted architecture
+# receives execute/implement flag
+# receives hw resources
+# provides back required inputs
+# receives back file paths
+# provides confirmation to user
+# user confirms start of runtime
+# sends progress updates
+
+components: entry_point + user

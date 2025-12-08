@@ -1,0 +1,5 @@
+# simple path to desired architecture sent to validator
+# receives required inputs
+# sends input file paths
+# receives confirmation back
+components: entry_point + validator
