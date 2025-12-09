@@ -1,0 +1,25 @@
+events:
+  - id: "EV-task_status_change"
+    kind: "domain_event"
+    source_kind: "component"
+    component_ref: "CMP-TaskExecutor"   # or ArtifactEngine / TaskCompiler, pick the real one
+    port_ref: "PORT-TE-task_lifecycle_out"
+    interface_ref: "IF-TaskLifecycleEvents"
+    operation_ref: ""                   # if modeled as pure event stream
+    condition_ref: "COND-status_changed"
+    description: >
+      Emitted whenever a task instance transitions to a new status
+      (created|queued|running|completed|failed|cancelled).
+conditions:
+  - id: "COND-status_completed"
+    kind: "state_predicate"
+    subject_kind: "task"
+    subject_ref: ""          # logical subject, or link to TaskInstance state model
+    predicate:
+      left_ref_kind: "task_state"
+      left_ref: "task_instance.status"
+      operator: "=="
+      right_ref_kind: "literal"
+      right_ref: ""
+      right_value: "completed"
+    description: "Task instance reached COMPLETED state."

@@ -1,2 +1,0 @@
-components: scheduler + agent_configuration
-direction: bidirectional # scheduler can send orders to agent configuration, and agent configuration can send updates back to scheduler

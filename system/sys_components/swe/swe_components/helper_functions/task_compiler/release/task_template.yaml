@@ -1,0 +1,168 @@
+information_item_metadata: # only stuff about task of interest as an information item
+  metadata_template_version:
+  identity:
+    id: 
+    name: 
+    classification: 
+  work_item_status: 
+  authorship:
+    author:
+      name: 
+      role: 
+    approver:
+      name: 
+      role: 
+  change_history:
+    - version: 
+      date: 
+      author: 
+      note: 
+  access_control:
+    level: 
+    group: 
+task_metadata:
+  task_id: {task_order.unit_id}
+  unit_type: {unit.metadata.type}
+  task_name: {unit.name}
+  task_template_version: {naucnikumetnik.project_management.workflows.release.units.Compile task.template.metadata.version} 
+  task_level: {unit.metadata.level}
+  conformance: {unit.template_sources, unit.unit_detailed_design_sources}                  # org/project policy IDs
+  integrity_level: 
+  assignees:
+    responsible:
+      - id: {naucnikumetnik.process_improvement.unit_type.raci.responsible.id}
+        type: {task_order.responsible.type}  # here we say if it's a human or an agent
+        name: {task_order.responsible.name}
+        role: {naucnikumetnik.process_improvement.unit_type.raci.responsible.role_name}   
+    accountable:
+      - id: {naucnikumetnik.process_improvement.unit_type.raci.accountable.id}
+        type: {task_order.accountable.type}  # here we say if it's a human or an agent
+        name: {task_order.accountable.name}
+        role: {naucnikumetnik.process_improvement.unit_type.raci.responsible.role_name}   
+    consulted:
+      - id: {naucnikumetnik.process_improvement.unit_type.raci.responsible.id}
+        type: {task_order.consulted.type}  # here we say if it's a human or an agent
+        name: {task_order.assignee_name}
+        role: {naucnikumetnik.process_improvement.unit_type.raci.responsible.role_name}   
+    informed: 
+      - id: {naucnikumetnik.process_improvement.unit_type.raci.responsible.id}
+        type: {task_order.assignee_type}  # here we say if it's a human or an agent
+        name: {task_order.assignee_name}
+        role: {naucnikumetnik.process_improvement.unit_type.raci.responsible.role_name} 
+  priority: {task_order.priority}
+  traceability: 
+    domain_requirements: # only reference to first upper level requirement
+      - id: {unit.traceability.requirement[i]}
+    domain_component: # only reference to first upper level component
+      - id: {unit.traceability.component[i]}
+    task_dependencies:
+      - id: 
+        type: 
+  schedule:
+    planned_start: {task_order.planned_start}
+    planned_finish: {task_order.planned_finish}
+  lifecycle: {task_order.lifecycle_phase} 
+  iteration: {task_order.iteration} 
+guideline:  
+  description: {unit.internal_design.description.purpose}
+  steps: {unit.internal_design.algorithm}
+  thinking_checklist_bundle:
+    id: {unit.controls.heuristics.bundle_id}                        # e.g., "derive_sys_req@v1"
+    storage_cm_anchor_id: {configuration_management.cm_catalogue.unit.heuristics.bundle_id.location}  # where it's stored / how to access it
+  method_control_bundles: 
+    - id: 
+      storage_cm_anchor_id: # where it's stored / how to access it
+      enablers: # what is available to execute the control
+        - enabler_cm_anchor_id: 
+          name:
+          type: 
+          purpose:
+  enablers: # what is available to execute the task
+    - enabler_cm_anchor_id: 
+      name: 
+      type: 
+      purpose:
+inputs:
+  primary:
+    - id: {unit.interfaces.required[i]}
+      #selector:
+      name: {interface_id.card.name}
+      description: {interface_id.kind.role}
+      purpose: {interface_id.purpose.description}
+      storage_cm_anchor_id: {configuration_management.cm_catalogue.interface[i].location} # where it's stored / how to access it
+  hysteresis:
+    - failure_record_id: {task_order.hysteresis[i].failure_record_id}
+      failure_type: {task_order.hysteresis[i].type}
+      corrective_action_ref:  {task_order.hysteresis[i].corrective_action_ref}
+      notes: 
+outputs:
+  - id: {unit.interfaces.provided[i]}
+    #selector:
+    name: {interface_id.card.name}
+    description: {interface_id.kind.role}
+    storage_cm_anchor_id: {configuration_management.cm_catalogue.interface[i].location}
+    formatting:  
+      format_type: {.aios.unit.cm_binding}
+      control_bundles:
+        - id: {capability_domain.format_type.control_bundle[i].id}
+          storage_cm_anchor_id: {configuration_management.cm_catalogue.control_bundle[i].location}
+          enablers: 
+            - enabler_cm_anchor_id: 
+              name: 
+              type: 
+              purpose:
+    styling: 
+      control_bundles:
+        - id: {capability_domain.style_type.control_bundle[i].id}
+          storage_cm_anchor_id: {configuration_management.cm_catalogue.style_type[i].location}
+          enablers: # what is available to execute the control 
+            - enabler_cm_anchor_id: 
+              name: 
+              type: 
+              purpose:
+    template: 
+      storage_cm_anchor_id: {configuration_management.cm_catalogue.unit.template.location}
+      enablers: # what is available to modify the template 
+        - enabler_cm_anchor_id: 
+          name: 
+          type: 
+          purpose:
+    example: 
+      storage_cm_anchor_id: {configuration_management.cm_catalogue.unit.example.location}
+    bad_example:
+      storage_cm_anchor_id: {configuration_management.cm_catalogue.unit.bad_example.location}
+acceptance_criteria:
+  - id:
+    outcome:
+    measure:
+    evidence:
+    reference:
+review: 
+  objective:
+  scope_artifacts:
+  review_stack:
+    - type:
+      tool:
+      mode:
+  independence_level:
+  roles:
+    reviewers:
+    approvers:
+  coverage:
+  evidence_to_capture:
+  disposition_policy:
+    severity_classes:
+    waiver_approval_roles:
+  exit_criteria:
+  control_packs:
+    - id:
+task_run_logs: 
+  - log_id: 
+    description:
+    storage_cm_anchor_id: # where it's stored / how to access it
+notes:
+  - note_id:
+    note_owner:
+    text:
+    links:
+    attachments:

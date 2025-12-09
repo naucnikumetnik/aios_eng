@@ -1,0 +1,39 @@
+data_semantics:
+  payloads:
+    - id: "PL-TaskStatusEvent"
+      name: "TaskStatusEvent"
+      direction: "provider_to_consumer"
+      description: "Notification about a task instance status transition."
+      fields:
+        - id: "task_instance_id"
+          name: "task_instance_id"
+          type: "string"
+          required: true
+        - id: "old_status"
+          name: "old_status"
+          type: "string"
+          required: true
+          description: "Previous status of the task instance."
+        - id: "new_status"
+          name: "new_status"
+          type: "string"
+          required: true
+          description: "New status of the task instance."
+        - id: "occurred_at"
+          name: "occurred_at"
+          type: "string"
+          required: true
+          description: "ISO 8601 timestamp."
+        - id: "reason"
+          name: "reason"
+          type: "string"
+          required: false
+          description: "Optional human-readable explanation."
+
+operations:
+  - id: "OP-task_status_changed"
+    name: "TaskStatusChanged"
+    kind: "event"
+    description: "Pushed whenever a task changes status."
+    request_payload_ref: "PL-TaskStatusEvent"
+    response_payload_ref: ""
