@@ -26,7 +26,6 @@ class TaskLifecycleEventsPort(Protocol):
     def publish(self, event: TaskStatusEvent) -> None:
         """Used by TaskExecutor / ArtifactEngine to emit events."""
         ...
-
     def subscribe(self, handler: Callable[[TaskStatusEvent], None]) -> None:
         """Used by Scheduler to listen for status changes."""
         ...

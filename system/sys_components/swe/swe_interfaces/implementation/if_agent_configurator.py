@@ -2,8 +2,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol, Sequence
 
-from system.sys_components.swe.swe_interfaces.if_resources import available_resources
-from task_compiler.design.interfaces.if_task import task
+from system.sys_components.swe.swe_interfaces.implementation.if_resources import available_resources
+from system.sys_components.swe.swe_interfaces.implementation.if_task import task
 
 @dataclass
 class llm_config:

@@ -3,13 +3,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol, Sequence
 
-@dataclass(fixed = True)
+@dataclass
 class task_order:
     task_name: str
     task_description: str
-    input_requirements: dict[str, str]
-    output_requirements: dict[str, str]
-    parameters: dict[str, str]
+    input_requirements: str
+    output_requirements: str
+    parameters: str
+    execute_v_implement: str
 
 @dataclass
 class task:
@@ -21,4 +22,4 @@ class task:
 
 class request_task_port (Protocol):
     def compile_task (self, task_order: task_order) -> task:
-        pass
+        ...

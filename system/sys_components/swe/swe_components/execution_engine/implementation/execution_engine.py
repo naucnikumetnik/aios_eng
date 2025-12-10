@@ -66,6 +66,5 @@ def main():
     compiler = prompt_compiler()
     envoke_llm ()
 if __name__ == "__main__":
-    envoke_llm()
-    print("LLM Envoke executed")
+    main()
     
