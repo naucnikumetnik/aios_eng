@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Protocol, Optional
 from pathlib import Path
-from system.sys_components.swe.swe_interfaces.implementation.if_scheduler import system_config
+from system.sys_components.swe.swe_interfaces.implementation.if_resources import resources_data
 
 # plan events
 @dataclass (frozen=True)
@@ -93,6 +93,18 @@ class batch_aborted_report:
     execution_time: int
     prompt: str
 
+@dataclass (frozen=True)
+class system_config:
+    restore_v_create: str
+    checkpoint: Path
+    execute_v_implement: str
+    architecture_v_unit: str
+    architecture_v_unit_path: Path
+    review_required: bool
+    tests_required: bool
+    resources: resources_data
+    log_path: Path
+    project_path: Path
 
 class report_to_user_port (Protocol):
     def report_plan_progress (self) -> plan_status:
@@ -101,6 +113,7 @@ class report_to_user_port (Protocol):
         ...
     def provide_help (self) -> help:
         ... 
+
 class fetch_user_data_port (Protocol):
-    def read_user_data (self) -> Optional[system_config]:
+    def configure_system (self) -> Optional[system_config]:
         ...
