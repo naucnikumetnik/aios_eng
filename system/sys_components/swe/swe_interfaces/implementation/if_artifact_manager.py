@@ -1,12 +1,18 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol, Sequence
+from typing import Protocol
 
+@dataclass(frozen=True)
+class artifact_ref:
+    kind: str        # "udd|arch_desc|interface|task|trace|..."
+    id: str          # e.g. "UDD-AIOS-SCHED-01"
 
-class save_as_type_port (Protocol):
-    def save_as_type (self, file_path: Path, file_type: str, data: str) -> bool:
-        ...
+@dataclass(frozen=True)
+class artifact_content:
+    ref: artifact_ref
+    raw_content: str
 
-class modify_artifact_port (Protocol):
-    def modify_artifact (self, file_path: Path, edit_type: str, data) -> bool:
-        ...
+class artifact_store_port(Protocol):
+    def load(self, ref: artifact_ref) -> artifact_content: ...
+    def save(self, artifact: artifact_content) -> None: ...
+    def modify_artifact (self, file_path: Path, edit_type: str, data) -> bool: ...

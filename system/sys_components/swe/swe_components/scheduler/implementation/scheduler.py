@@ -95,7 +95,11 @@ class scheduler (scheduler_port):
         } '''
         resolver.resolve_inputs()
         print(execution_plan)
+        ...
         return execution_plan
+
+    def _calculate_concurrency (self):
+        ...
     
     def assign_resources (self):
         ...
@@ -125,9 +129,6 @@ class scheduler (scheduler_port):
         )
     
     def build_task (self):
-        ...
-
-    def _calculate_concurrency (self):
         ...
 
     def _monitor(self, event):

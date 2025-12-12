@@ -60,9 +60,9 @@ class cli(fetch_user_data_port):
             resources_cfg = self._load_resources_cfg()
 
             # logging / artifacts paths
-            log_path_str = input("Please provide path for runtime logs: ")
+            orga_str = input("Please provide path for your orga docs: ") 
+            orga = Path (orga_str)
             project_path_str = input("Please provide path for generated artifacts: ")
-            log_path = Path(log_path_str)
             project_path = Path(project_path_str)
 
             # in create mode we usually have no checkpoint yet
@@ -83,7 +83,7 @@ class cli(fetch_user_data_port):
             review_required = False
             tests_required = False
             resources_cfg = None
-            log_path = None
+            orga = None
             project_path = None
 
         # === BUILD CONFIG ====================================================
@@ -96,7 +96,7 @@ class cli(fetch_user_data_port):
             review_required=review_required,
             tests_required=tests_required,
             resources=resources_cfg,
-            log_path=log_path,
+            orga = orga,
             project_path=project_path,
         )
 

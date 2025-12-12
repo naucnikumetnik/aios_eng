@@ -103,7 +103,7 @@ class system_config:
     review_required: bool
     tests_required: bool
     resources: resources_data
-    log_path: Path
+    orga: Path
     project_path: Path
 
 class report_to_user_port (Protocol):
