@@ -1,15 +1,18 @@
 # local lib
 from pathlib import Path
 
-# interfaces
-from system.sys_components.swe.swe_interfaces.implementation.if_scheduler import scheduler_port, system_config, execution_plan
+# sos interfaces
+from sos_interfaces.if_system_configuration import system_config
+from sos_interfaces.if_system_configuration import resources_data
+# system interfaces
+
+# domain interfaces
+from system.sys_components.swe.swe_interfaces.implementation.if_scheduler import scheduler_port, execution_plan
 from system.sys_components.swe.swe_interfaces.implementation.if_architecture_description import architecture_description
 from system.sys_components.swe.swe_interfaces.implementation.if_resolve import resolve_port
-from system.sys_components.swe.swe_interfaces.implementation.if_task_lifecycle_events import TaskStatusEvent, TaskStatus, TaskLifecycleEventsPort
+from system.sys_components.swe.swe_interfaces.implementation.if_task import task_status_event, task_status, task_lifecycle_port
 from system.sys_components.swe.swe_interfaces.implementation.if_agent_configurator import llm_config
-from system.sys_components.swe.swe_interfaces.implementation.if_resources import resources_data
 from system.sys_components.swe.swe_interfaces.implementation.if_task import task_order
-
 # functions
 from system.sys_components.swe.swe_components.helper_functions.resolver.implementation.resolve import resolve 
 from system.sys_components.swe.swe_components.execution_engine.implementation.execution_engine import order_task
@@ -17,7 +20,7 @@ from system.sys_components.swe.swe_components.helper_functions.event_bus.event_b
 
 class scheduler (scheduler_port):
 
-    def __init__(self, config: system_config, events_port: TaskLifecycleEventsPort):
+    def __init__(self, config: system_config, events_port: task_lifecycle_port):
         self.config = config
         self.base_resources = config.resources
         self.events_port = events_port
@@ -101,11 +104,16 @@ class scheduler (scheduler_port):
     def _calculate_concurrency (self):
         ...
     
-    def assign_resources (self):
-        ...
+    def _calculate_batches(self, task, inputs, base_resources):
+        # calculation_logic
+        batches = {batch1:{input_set: {chunk: 1, previous_batch: ""}, status: "todo", priority: "normal", artifact_operation: "stitch"}}
+        return batches
     
     def estimate_effort (self):
         ...
+    
+    def assign_resources (self):
+        ...  
     
     def _adjust (self):
         ...
@@ -113,11 +121,12 @@ class scheduler (scheduler_port):
     def _baseline (self):
         ...
     
+    '''
     def execute_plan (self, execution_plan: execution_plan):
         for unit in execution_plan[units]:
             if unit[status] == "todo":
                 self.order_task(Path("asd"))
-
+'''
     def order_task (self, unit: Path) -> None:
         asd = task_order (
             task_name= "asd",
@@ -128,9 +137,10 @@ class scheduler (scheduler_port):
             execute_v_implement = self.config.execute_v_implement
         )
     
+    '''
     def build_task (self):
         ...
-
+'''
     def _monitor(self, event):
         ''' detect task status change.
         if complete, move to next,  if failed, retry or escalate
@@ -180,12 +190,7 @@ class scheduler (scheduler_port):
                 "test": details["test"]
             }
         # send to execution engine
-        execution_engine = order_task(task_order)
-        
-    def _calculate_batches(self, task, inputs, base_resources):
-        # calculation_logic
-        batches = {batch1:{input_set: {chunk: 1, previous_batch: ""}, status: "todo", priority: "normal", artifact_operation: "stitch"}}
-        return batches
+        execution_engine = order_task(task_order) 
     
     def _report_status(self):
         pass
@@ -231,7 +236,9 @@ def main():
         architecture_v_unit_path = Path ('asd/asd.asd'),
         review_required = False,
         tests_required = False,
-        resources = resources
+        resources = resources,
+        orga = Path("asd"),
+        project_path= Path ("aasd")
     )
     scheduler (config = config, events_port = event_bus)
 

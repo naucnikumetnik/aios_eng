@@ -1,8 +1,8 @@
-from system.sys_components.swe.swe_interfaces.if_local_llm import llm_answer, local_llm_port
-from agent_configurator.design.interfaces.if_llm_config import llm_config, llm_config_port
+from system.sys_components.swe.swe_interfaces.implementation.if_local_llm import llm_answer, local_llm_port
+from system.sys_components.swe.swe_interfaces.implementation.if_agent_configurator import llm_config
 
 class local_llm_engine(local_llm_port):
-    def invoke_local_llm (self, prompt: str, settings: llm_config) -> llm_answer:
+    def trigger_local_llm (self, prompt: str, settings: llm_config) -> llm_answer:
         return llm_answer(0.0, 0.0, "This is a dummy response from local_llm_engine.")
     pass
 
@@ -19,4 +19,4 @@ if __name__ == "__main__":
         max_tokens=512
     )
     prompt = "Test prompt"
-    local_llm_engine.invoke_local_llm(prompt = prompt, settings=config)
+    local_llm_engine()

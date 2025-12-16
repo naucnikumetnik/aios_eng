@@ -3,7 +3,7 @@ from pathlib import Path
 import json
 
 # interfaces
-from sos_interfaces.if_user_port import fetch_user_data_port, system_config
+from sos_interfaces.if_system_config import fetch_user_data_port, system_config
 from system.sys_components.swe.swe_interfaces.implementation.if_resources import (
     resources_data,
 )

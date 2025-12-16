@@ -349,7 +349,7 @@ class request_task_port (Protocol):
     def compile_task (self, task_order: task_order) -> task_spec:
         ...
 
-class TaskLifecycleEventsPort(Protocol):
+class task_lifecycle_port(Protocol):
     def publish(self, event: task_status_event) -> None:
         """Used by TaskExecutor / ArtifactEngine to emit events."""
         ...

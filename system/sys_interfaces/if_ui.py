@@ -3,6 +3,7 @@ from typing import Protocol, Optional
 from pathlib import Path
 from system.sys_components.swe.swe_interfaces.implementation.if_resources import resources_data
 
+
 # plan events
 @dataclass (frozen=True)
 class plan_runtime_report:
@@ -113,7 +114,3 @@ class report_to_user_port (Protocol):
         ...
     def provide_help (self) -> help:
         ... 
-
-class fetch_user_data_port (Protocol):
-    def configure_system (self) -> Optional[system_config]:
-        ...

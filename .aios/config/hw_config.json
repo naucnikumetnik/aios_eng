@@ -1,0 +1,17 @@
+{ 
+  "cpu_model": "x86_64",
+  "cpu_physical_cores": 24,
+  "cpu_logical_cores": 32,
+  "ram_total_gb": 125.62,
+  "ram_available_gb": 116.93,
+  "storage_type": "NVMe/SSD",
+  "storage_read_mb_s": null,
+  "storage_free_gb": 1650.82,
+  "gpu_count": 1,
+  "gpu_name": "NVIDIA GeForce RTX 5080",
+  "gpu_vram_gb": 15.9208984375,
+  "gpu_compute_capability": "12.0",
+  "gpu_supports_fp16": true,
+  "gpu_supports_bf16": true,
+  "gpu_supports_cuda": true
+}

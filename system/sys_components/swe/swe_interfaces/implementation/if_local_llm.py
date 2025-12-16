@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol, Sequence
-from agent_configurator.design.interfaces.if_llm_config import llm_config
+from typing import Protocol, Sequence, Mapping, Any
+from enum import Enum
+from system.sys_components.swe.swe_interfaces.implementation.if_agent_configurator import llm_config
 
 # Error model for Local LLMs
 class LlmErrorCategory(str, Enum):
@@ -64,5 +65,5 @@ class llm_answer:
     response_text: str
 
 class local_llm_port (Protocol):
-    def invoke_local_llm (self, prompt: str, settings: llm_config) -> llm_answer:
-        pass
+    def trigger_local_llm (self, prompt: str, settings: llm_config) -> llm_answer:
+        ...
